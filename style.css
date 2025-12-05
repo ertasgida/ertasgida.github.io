@@ -33,3 +33,26 @@ body{font-family:Inter,system-ui,Segoe UI,Arial;margin:0;background:var(--bg);co
 .btn.small{padding:8px;border-radius:8px;border:0;cursor:pointer}
 
 @media(max-width:900px){.layout{grid-template-columns:1fr}.container-row{padding:10px}}
+/* İndirimli/indirimsiz ürünlerde fiyat alanı ve butonlar sabit kalsın - OYNAMA YOK! */
+.card .price + .old,
+.card .price + .old:empty {
+    min-height: 18px;        /* eski fiyat olsun ya da olmasın aynı boşluğu tutar */
+    margin-top: 4px;
+    display: block;
+}
+
+.card .price {
+    min-height: 24px;        /* ana fiyatın da yüksekliği sabit */
+    line-height: 1.2;
+}
+
+/* actions (butonlar) her zaman aynı mesafede dursun */
+.card .actions {
+    margin-top: 12px !important;   /* mevcut margin-top'u ezer, sabitler */
+}
+
+/* Ekstra güvenlik: flex-grow olmasın diye */
+.card > div:nth-child(4) {
+    margin-top: auto;        /* title ile fiyat alanı arasındaki boşluk esner, 
+                               ama actions her zaman en altta sabit kalır */
+}
