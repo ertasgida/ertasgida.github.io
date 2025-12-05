@@ -1,0 +1,35 @@
+:root{--bg:#f6f7fb;--card:#fff;--accent:#ff6b00;--muted:#6b6f76}
+*{box-sizing:border-box}
+body{font-family:Inter,system-ui,Segoe UI,Arial;margin:0;background:var(--bg);color:#111}
+.container-row{max-width:1200px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between}
+.site-container{max-width:1200px;margin:28px auto;padding:0 20px}
+.site-header{background:#fff;border-bottom:1px solid #eef0f3}
+.brand{font-weight:800;color:var(--accent);text-decoration:none}
+.main-nav a{margin:0 10px;color:#333;text-decoration:none}
+.nav-actions{display:flex;gap:8px;align-items:center}
+.nav-actions input{padding:8px;border-radius:8px;border:1px solid #e6e8ec}
+.btn{display:inline-block;padding:10px 14px;border-radius:10px;text-decoration:none}
+.btn.primary{background:var(--accent);color:#fff}
+
+.page-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+
+.layout{display:grid;grid-template-columns:260px 1fr;gap:20px}
+.sidebar{background:var(--card);padding:12px;border-radius:12px;box-shadow:0 6px 18px rgba(8,12,20,0.04)}
+.filter{margin-bottom:12px}
+.filter input{width:100%;padding:8px;border-radius:8px;border:1px solid #e6e8ec}
+.categories{display:flex;flex-direction:column;gap:8px}
+.cat{padding:8px;border-radius:8px;background:transparent;border:1px solid #f0f1f4;cursor:pointer}
+
+.products{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px}
+.card{background:var(--card);border-radius:12px;padding:12px;position:relative;overflow:hidden;box-shadow:0 6px 18px rgba(8,12,20,0.06);display:flex;flex-direction:column}
+.media{height:150px;border-radius:10px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#fafafa}
+.media img{max-width:100%;max-height:100%;object-fit:contain}
+.title{font-size:15px;font-weight:600}
+.price{font-size:16px;font-weight:700;color:var(--accent)}
+.old{font-size:13px;color:var(--muted);text-decoration:line-through}
+.badge{position:absolute;top:10px;left:10px;background:var(--accent);color:#fff;padding:6px 8px;border-radius:8px;font-weight:700;font-size:13px}
+.sold{font-size:12px;color:var(--muted)}
+.actions{display:flex;gap:8px;margin-top:8px}
+.btn.small{padding:8px;border-radius:8px;border:0;cursor:pointer}
+
+@media(max-width:900px){.layout{grid-template-columns:1fr}.container-row{padding:10px}}

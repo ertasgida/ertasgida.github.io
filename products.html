@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Gıda Ürünleri</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="site-header"></div>
+  <main class="site-container">
+    <header class="page-top">
+      <h2>Gıda Ürünleri</h2>
+      <div class="results">Toplam <strong id="count">0</strong> ürün</div>
+    </header>
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="filter">
+          <label>Arama
+            <input id="search" placeholder="Ürün veya marka ara...">
+          </label>
+        </div>
+        <div class="filter">
+          <label>Kategori</label>
+          <div class="categories" id="cats">
+            <button class="cat" data-cat="all">Hepsi</button>
+            <button class="cat" data-cat="atistirmalik">Atıştırmalık</button>
+            <button class="cat" data-cat="icecek">İçecek</button>
+            <button class="cat" data-cat="kuruyemis">Kuruyemiş</button>
+          </div>
+        </div>
+      </aside>
+      <section class="products" id="products"></section>
+    </div>
+  </main>
+  <div id="site-footer"></div>
+  <script src="scripts.js"></script>
+</body>
+</html>
