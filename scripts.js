@@ -44,6 +44,57 @@ const data = [
   {id:5,title:'Un (10kg)',price:249.90,old:null,img:'https://picsum.photos/seed/5/300/200',sold:10,cat:'unlu'}
 ];
 
+// Kategorileri dinamik oluştur
+function renderCategories() {
+  const cats = [...new Set(data.map(p => p.cat))]; // Unique kategoriler
+  const container = document.getElementById('categories');
+  if (!container) return;
+
+  container.innerHTML = `
+    <li data-cat=""><strong>Tümü</strong></li>
+    ${cats.map(cat => `<li data-cat="${cat}">${cat.charAt(0).toUpperCase() + cat.slice(1)}</li>`).join('')}
+  `;
+
+  // Tıklama eventi ekle
+  container.addEventListener('click', (e) => {
+    if (e.target.tagName === 'LI') {
+      document.querySelectorAll('#categories li').forEach(li => li.classList.remove('active'));
+      e.target.classList.add('active');
+      const cat = e.target.dataset.cat;
+      applyFilters(cat, document.getElementById('search').value);
+    }
+  });
+}
+
+// Filtre uygula (kategori + arama)
+function applyFilters(selectedCat = '', searchTerm = '') {
+  let filtered = data;
+
+  // Kategori filtre
+  if (selectedCat && selectedCat !== '') {
+    filtered = filtered.filter(p => p.cat === selectedCat);
+  }
+
+  // Arama filtre (title'a göre)
+  if (searchTerm.trim()) {
+    const term = searchTerm.toLowerCase();
+    filtered = filtered.filter(p => p.title.toLowerCase().includes(term));
+  }
+
+  renderProducts(filtered);
+}
+
+// Arama eventi
+function initSearch() {
+  const searchInput = document.getElementById('search');
+  if (!searchInput) return;
+
+  searchInput.addEventListener('input', (e) => {
+    const activeCat = document.querySelector('#categories li.active')?.dataset.cat || '';
+    applyFilters(activeCat, e.target.value);
+  });
+}
+
 // Ürünleri render et
 function renderProducts(list = data) {
   const container = document.getElementById('products');
@@ -82,8 +133,14 @@ function renderProducts(list = data) {
   if (countEl) countEl.textContent = list.length;
 }
 
-// Sayfa yüklendiğinde çalıştır
+// Sayfa yüklendiğinde her şeyi başlat
 document.addEventListener('DOMContentLoaded', () => {
-  // header/footer biraz geç yüklenebilir, render'ı biraz geciktirmek iyi olur
-  setTimeout(renderProducts, 300);
+  setTimeout(() => {
+    renderCategories(); // Kategorileri oluştur
+    initSearch(); // Arama'yi başlat
+    renderProducts(); // Ürünleri göster (tümü)
+    // İlk kategori'yi aktif et
+    const allCat = document.querySelector('#categories li[data-cat=""]');
+    if (allCat) allCat.classList.add('active');
+  }, 300);
 });
